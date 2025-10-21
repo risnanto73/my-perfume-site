@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Star, Menu, X, FlaskConical, BarChart3, Lightbulb, Cpu, Settings, Headphones, Instagram, Linkedin } from "lucide-react";
 import construc from "./assets/construct.png";
@@ -6,7 +6,7 @@ import collect from "./assets/collect.png";
 import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
-import heroBottle from "./assets/vending-new-3.png";
+import heroBottle from "./assets/vendii-water.svg";
 import logo from "./assets/vendii-logo.png";
 import challengeIcon from "./assets/the-challange.svg";
 import answerIcon from "./assets/our-answer.svg";
@@ -96,14 +96,30 @@ function Nav() {
 }
 
 function Hero() {
+  const [offsetTop, setOffsetTop] = useState(0);
+
+  // Ambil tinggi navbar secara dinamis
+  useLayoutEffect(() => {
+    const nav = document.querySelector("div[name='Navbar']");
+    if (nav) {
+      setOffsetTop(nav.offsetHeight); // tinggi aktual navbar
+    }
+  }, []);
+
   return (
     <section
-      className="relative overflow-hidden bg-white pt-28"
       id="home"
+      className="relative overflow-hidden bg-white transition-all duration-300"
+      style={{
+        paddingTop: `${offsetTop + 32}px`, // kasih jarak kecil biar napas
+        paddingBottom: "5rem",
+      }}
     >
+      {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.06),transparent_40%)]" />
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-10 sm:px-6 md:grid-cols-2 md:items-center">
+      {/* Grid content */}
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-2 md:items-center">
         {/* Text Section */}
         <motion.div
           variants={fadeIn}
@@ -129,7 +145,6 @@ function Hero() {
             consumer testing, digital feedback, and AI-powered insights.
           </p>
 
-          {/* CTA Button */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a href="#contact">
               <button className="rounded-2xl border border-black bg-black px-6 py-2 text-white hover:bg-white hover:text-black transition-all duration-300">
@@ -138,8 +153,13 @@ function Hero() {
             </a>
           </div>
 
-          {/* Testimonial */}
-          <p className="mt-6 text-sm text-black/60"> “Vendii’s evaluation platform was elegant, effortless, and exceeded all expectations.”{" "} <span className="font-medium text-black">— Kajal Perfumes Paris</span> </p>
+          <p className="mt-6 text-sm text-black/60">
+            “Vendii’s evaluation platform was elegant, effortless, and exceeded
+            all expectations.”{" "}
+            <span className="font-medium text-black">
+              — Kajal Perfumes Paris
+            </span>
+          </p>
         </motion.div>
 
         {/* Image Section */}
