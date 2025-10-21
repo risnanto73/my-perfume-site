@@ -10,7 +10,7 @@ import collect from "./assets/collect.png";
 import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
-import heroBottle from "./assets/video-vending.avif";
+import heroBottle from "./assets/vending-new.gif";
 import logo from "./assets/vendii-logo.png";
 import challengeIcon from "./assets/the-challange.svg";
 import answerIcon from "./assets/our-answer.svg";
