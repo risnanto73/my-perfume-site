@@ -7,6 +7,7 @@ import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
 import heroBottle from "./assets/vending-new.gif";
+import heroBottle2 from "./assets/vending-new-2.gif";
 import logo from "./assets/vendii-logo.png";
 import challengeIcon from "./assets/the-challange.svg";
 import answerIcon from "./assets/our-answer.svg";
@@ -150,7 +151,7 @@ function Hero() {
           className="relative flex justify-center"
         >
           <img
-            src={heroBottle}
+            src={heroBottle2}
             alt="Vendii Perfume Bottle"
             className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain transition-transform duration-700 hover:scale-105"
           />
@@ -890,7 +891,7 @@ function Footer() {
 
       {/* Copyright & Privacy */}
       <p>
-        © {new Date().getFullYear()} Atelier Fragrances —{" "}
+        © {new Date().getFullYear()} Vendii Global —{" "}
         <button
           onClick={() => setOpen(true)}
           className="underline hover:text-black transition-colors"
