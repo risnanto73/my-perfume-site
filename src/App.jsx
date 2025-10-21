@@ -6,8 +6,7 @@ import collect from "./assets/collect.png";
 import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
-import heroBottle from "./assets/vending-new.gif";
-import heroBottle2 from "./assets/vending-new-2.gif";
+import heroBottle from "./assets/vending-new-3.png";
 import logo from "./assets/vendii-logo.png";
 import challengeIcon from "./assets/the-challange.svg";
 import answerIcon from "./assets/our-answer.svg";
@@ -151,7 +150,7 @@ function Hero() {
           className="relative flex justify-center"
         >
           <img
-            src={heroBottle2}
+            src={heroBottle}
             alt="Vendii Perfume Bottle"
             className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain transition-transform duration-700 hover:scale-105"
           />
