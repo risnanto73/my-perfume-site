@@ -307,59 +307,40 @@ function StorySection() {
 }
 
 function AboutUs() {
-  const slides = [
-    {
-      title: "AI-Powered Insight",
-      text: "We harness machine learning to decode scent preferences and empower confident, data-driven fragrance creation.",
-    },
-    {
-      title: "Creative Collaboration",
-      text: "We blend artistic innovation and analytical precision to support perfumers through every creative stage.",
-    },
-    {
-      title: "Scent Experience",
-      text: "We deliver personalized, immersive scent journeys that connect brands with genuine human emotion.",
-    },
-  ];
-
   return (
     <section
       id="about-us"
       className="relative bg-white border-y border-black/10 py-28"
     >
-      <div className="max-w-5xl mx-auto px-6 text-center">
+      <div className="max-w-4xl mx-auto px-6 text-center">
         {/* Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-5xl mb-16"
+          className="font-serif text-4xl md:text-5xl mb-8"
         >
           About Us
         </motion.h2>
 
-        {/* Content Blocks */}
-        <div className="space-y-16">
-          {slides.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.8 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h3 className="text-2xl font-serif mb-4">{item.title}</h3>
-              <p className="text-black/70 leading-relaxed">{item.text}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Single Paragraph */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-black/70 leading-relaxed text-lg md:text-xl max-w-3xl mx-auto"
+        >
+          Vendii is a fragrance technology company bridging the gap between
+          perfumery creativity and consumer insight. We combine data science
+          and AI with immersive sampling to help fragrance houses and brands
+          bring their best creations to market.
+        </motion.p>
       </div>
     </section>
   );
 }
-
 
 function ReviewsCarousel() {
   const reviews = [
@@ -369,20 +350,6 @@ function ReviewsCarousel() {
       quote:
         "We enlisted Vendii for our fragrance evaluation, and it was exceptional from start to finish. The bespoke web-app was elegant in design and effortless to use, it brought a real sense of refinement and ease to the entire process. The Vendii team were a pleasure to work with — thoughtful, accommodating, and meticulous in ensuring every detail was aligned with our needs. The final data report was insightful, beautifully presented, and beyond expectations — a first-class experience.",
       rating: 5,
-    },
-    {
-      name: "Julien R.",
-      company: "Maison de Parfum Paris",
-      quote:
-        "For years, we relied purely on instinct. Vendii turned that intuition into measurable insights — simply remarkable.",
-      rating: 5,
-    },
-    {
-      name: "Sophia T.",
-      company: "Natura Essence",
-      quote:
-        "The process felt intuitive yet powerful. Our creative team finally had data that spoke our artistic language.",
-      rating: 4,
     },
   ];
 
