@@ -11,6 +11,7 @@ import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
 import heroBottle from "./assets/video-vending.avif";
+import logo from "./assets/vendii-logo.png"
 
 
 // Monochrome Perfume Landing Page (Black & White Theme)
@@ -20,29 +21,50 @@ const fadeIn = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const stagger = {
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
 function Nav() {
   const [open, setOpen] = React.useState(false);
+
   return (
-    <div className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur-md" name="Navbar" >
+    <div
+      className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur-md"
+      name="Navbar"
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-        <a href="#" className="font-serif text-2xl tracking-wide">VENDII</a>
+        {/* Logo */}
+        <a href="#" className="flex items-center gap-2">
+          <img
+            src={logo}
+            alt="Vendii Logo"
+            className="h-8 w-auto object-contain"
+          />
+        </a>
+
+        {/* Menu desktop */}
         <div className="hidden items-center gap-8 md:flex">
-          <a href="#about-us" className="text-sm uppercase tracking-widest hover:opacity-70">ABOUT US</a>
-          <a href="#how-it-works" className="text-sm uppercase tracking-widest hover:opacity-70">HOW IT WORKS</a>
-          <a href="#why-vendii" className="text-sm uppercase tracking-widest hover:opacity-70">WHY VENDII</a>
-          <a href="#contact" className="text-sm uppercase tracking-widest hover:opacity-70">Contact</a>
+          <a href="#about-us" className="text-sm uppercase tracking-widest hover:opacity-70">
+            ABOUT US
+          </a>
+          <a href="#how-it-works" className="text-sm uppercase tracking-widest hover:opacity-70">
+            HOW IT WORKS
+          </a>
+          <a href="#why-vendii" className="text-sm uppercase tracking-widest hover:opacity-70">
+            WHY VENDII
+          </a>
+          <a href="#contact" className="text-sm uppercase tracking-widest hover:opacity-70">
+            CONTACT
+          </a>
           <button className="rounded-2xl border border-black bg-black px-5 py-2 text-white hover:bg-white hover:text-black">
             GET IN TOUCH
           </button>
         </div>
+
+        {/* Menu mobile toggle */}
         <button className="md:hidden" onClick={() => setOpen(!open)}>
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
+
+      {/* Mobile dropdown */}
       {open && (
         <div className="border-t border-black/10 bg-white md:hidden">
           <div className="mx-auto max-w-7xl px-4 py-3">
@@ -51,9 +73,14 @@ function Nav() {
                 ["ABOUT US", "#about-us"],
                 ["HOW IT WORKS", "#how-it-works"],
                 ["WHY VENDII", "#why-vendii"],
-                ["Contact", "#contact"],
+                ["CONTACT", "#contact"],
               ].map(([label, href]) => (
-                <a key={label} href={href} className="text-sm uppercase tracking-widest" onClick={() => setOpen(false)}>
+                <a
+                  key={label}
+                  href={href}
+                  className="text-sm uppercase tracking-widest"
+                  onClick={() => setOpen(false)}
+                >
                   {label}
                 </a>
               ))}
@@ -70,7 +97,10 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white pt-28" id="home">
+    <section
+      className="relative overflow-hidden bg-white pt-28"
+      id="home"
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.06),transparent_40%)]" />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-10 sm:px-6 md:grid-cols-2 md:items-center">
@@ -103,36 +133,24 @@ function Hero() {
           </div>
         </motion.div>
 
-        {/* Full Image Card */}
+        {/* Full Image Section (no card) */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
           animate="show"
           className="relative flex justify-center"
         >
-          <div className="relative mx-auto aspect-[4/5] w-80 max-w-full rounded-3xl border border-black/10 shadow-2xl overflow-hidden bg-white">
-            {/* Inner glass frame */}
-            <div className="absolute inset-4 rounded-2xl border border-black/10 bg-white/70 backdrop-blur-sm z-0" />
-
-            {/* Top label */}
-            <div className="absolute inset-x-8 top-8 z-20 rounded-md border border-black/20 bg-white/90 py-2 text-center font-serif text-xl tracking-wide shadow-sm">
-              VENDII GLOBAL
-            </div>
-
-            {/* Full image area */}
-            <div className="absolute top-[4.5rem] bottom-[1rem] left-4 right-4 z-10 overflow-hidden rounded-2xl">
-              <img
-                src={heroBottle}
-                alt="Vendii Perfume Bottle"
-                className="w-full h-full object-cover object-center scale-100 transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          </div>
+          <img
+            src={heroBottle}
+            alt="Vendii Perfume Bottle"
+            className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain transition-transform duration-700 hover:scale-105"
+          />
         </motion.div>
       </div>
     </section>
   );
 }
+
 
 function Badges() {
   const items = [
@@ -289,137 +307,59 @@ function StorySection() {
 }
 
 function AboutUs() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  // Slide opacity berdasarkan progress scroll
-  const opacity1 = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 1, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.35, 0.55, 0.7], [0, 1, 0]);
-  const opacity3 = useTransform(scrollYProgress, [0.65, 0.9, 1], [0, 1, 1]);
-
-  // Indikator aktif
-  const active1 = useTransform(scrollYProgress, [0, 0.25, 0.45], [1, 1, 0.4]);
-  const active2 = useTransform(scrollYProgress, [0.35, 0.6, 0.75], [0.4, 1, 0.4]);
-  const active3 = useTransform(scrollYProgress, [0.7, 0.9, 1], [0.4, 1, 1]);
-
   const slides = [
     {
       title: "AI-Powered Insight",
       text: "We harness machine learning to decode scent preferences and empower confident, data-driven fragrance creation.",
-      image: aiInsight,
     },
     {
       title: "Creative Collaboration",
       text: "We blend artistic innovation and analytical precision to support perfumers through every creative stage.",
-      image:
-        collaboration,
     },
     {
       title: "Scent Experience",
       text: "We deliver personalized, immersive scent journeys that connect brands with genuine human emotion.",
-      image:
-        scent,
     },
   ];
 
   return (
-    <section ref={ref} id="about-us" className="relative bg-white border-y border-black/10">
-      {/* Tinggi total scroll area */}
-      <div className="h-[300vh] relative">
-        {/* Sticky viewport */}
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center text-center px-6">
-          {/* ✨ Section Title */}
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="font-serif text-4xl md:text-5xl mb-16"
-          >
-            About Us
-          </motion.h2>
+    <section
+      id="about-us"
+      className="relative bg-white border-y border-black/10 py-28"
+    >
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        {/* Section Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="font-serif text-4xl md:text-5xl mb-16"
+        >
+          About Us
+        </motion.h2>
 
-          {/* Main container */}
-          <div className="max-w-7xl w-full flex gap-10 md:gap-16 items-center justify-center">
-            {/* Left indicator */}
-            <div className="hidden md:flex flex-col items-center justify-center gap-4">
-              {[active1, active2, active3].map((opacity, i) => (
-                <motion.div
-                  key={i}
-                  style={{ opacity }}
-                  className="flex flex-col items-center text-sm font-mono"
-                >
-                  <motion.div
-                    style={{
-                      scale: opacity,
-                      backgroundColor: `rgba(0,0,0,${opacity.get()})`,
-                    }}
-                    className="h-4 w-4 rounded-full border border-black/50 mb-1"
-                  />
-                  <span className="text-xs text-black/70">{i + 1}</span>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Slide container */}
-            <div className="relative flex-1 h-[70vh] flex items-center justify-center">
-              {/* Slide 1 */}
-              <motion.div
-                style={{ opacity: opacity1 }}
-                className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-10"
-              >
-                <div className="md:w-1/2 text-center md:text-left">
-                  <h3 className="text-2xl font-serif mb-4">{slides[0].title}</h3>
-                  <p className="text-black/70 leading-relaxed">{slides[0].text}</p>
-                </div>
-                <img
-                  src={slides[0].image}
-                  alt={slides[0].title}
-                  className="md:w-1/2 w-full h-64 md:h-[28rem] object-cover rounded-3xl shadow-md border border-black/10"
-                />
-              </motion.div>
-
-              {/* Slide 2 */}
-              <motion.div
-                style={{ opacity: opacity2 }}
-                className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-10"
-              >
-                <div className="md:w-1/2 text-center md:text-left">
-                  <h3 className="text-2xl font-serif mb-4">{slides[1].title}</h3>
-                  <p className="text-black/70 leading-relaxed">{slides[1].text}</p>
-                </div>
-                <img
-                  src={slides[1].image}
-                  alt={slides[1].title}
-                  className="md:w-1/2 w-full h-64 md:h-[28rem] object-cover rounded-3xl shadow-md border border-black/10"
-                />
-              </motion.div>
-
-              {/* Slide 3 */}
-              <motion.div
-                style={{ opacity: opacity3 }}
-                className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-10"
-              >
-                <div className="md:w-1/2 text-center md:text-left">
-                  <h3 className="text-2xl font-serif mb-4">{slides[2].title}</h3>
-                  <p className="text-black/70 leading-relaxed">{slides[2].text}</p>
-                </div>
-                <img
-                  src={slides[2].image}
-                  alt={slides[2].title}
-                  className="md:w-1/2 w-full h-64 md:h-[28rem] object-cover rounded-3xl shadow-md border border-black/10"
-                />
-              </motion.div>
-            </div>
-          </div>
+        {/* Content Blocks */}
+        <div className="space-y-16">
+          {slides.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.8 }}
+              className="max-w-3xl mx-auto"
+            >
+              <h3 className="text-2xl font-serif mb-4">{item.title}</h3>
+              <p className="text-black/70 leading-relaxed">{item.text}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
 
 function ReviewsCarousel() {
   const reviews = [
