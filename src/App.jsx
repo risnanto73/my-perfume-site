@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ShoppingBag, Star, ArrowRight, Menu, X, Leaf, FlaskConical, BarChart3, Lightbulb, Cpu, Settings, Headphones } from "lucide-react";
-import { useRef } from "react";
-import aiInsight from "./assets/ai-insight.png";
-import collaboration from "./assets/collaboration.png";
-import scent from "./assets/scent.png";
+import { Star, Menu, X, FlaskConical, BarChart3, Lightbulb, Cpu, Settings, Headphones, Instagram, Linkedin } from "lucide-react";
 import construc from "./assets/construct.png";
 import collect from "./assets/collect.png";
 import capture from "./assets/capture.png";
@@ -55,9 +51,11 @@ function Nav() {
           <a href="#contact" className="text-sm uppercase tracking-widest hover:opacity-70">
             CONTACT
           </a>
-          <button className="rounded-2xl border border-black bg-black px-5 py-2 text-white hover:bg-white hover:text-black">
-            GET IN TOUCH
-          </button>
+          <a href="#contact">
+            <button className="rounded-2xl border border-black bg-black px-5 py-2 text-white hover:bg-white hover:text-black">
+              GET IN TOUCH
+            </button>
+          </a>
         </div>
 
         {/* Menu mobile toggle */}
@@ -133,9 +131,11 @@ function Hero() {
 
           {/* CTA Button */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button className="rounded-2xl border border-black bg-black px-6 py-2 text-white hover:bg-white hover:text-black transition-all duration-300">
-              GET IN TOUCH
-            </button>
+            <a href="#contact">
+              <button className="rounded-2xl border border-black bg-black px-6 py-2 text-white hover:bg-white hover:text-black transition-all duration-300">
+                GET IN TOUCH
+              </button>
+            </a>
           </div>
 
           {/* Testimonial */}
@@ -849,9 +849,46 @@ function GetInTouch() {
 
 function Footer() {
   const [open, setOpen] = useState(false);
+  const hasShown = useRef(false); // untuk mencegah muncul berulang
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const bottom = document.body.offsetHeight - 10;
+
+      if (scrollPosition >= bottom && !hasShown.current) {
+        setOpen(true);
+        hasShown.current = true; // tandai sudah tampil
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <footer className="relative border-t border-black/10 bg-white py-10 text-center text-sm text-black/60">
+      {/* Social Media */}
+      <div className="flex justify-center gap-6 mb-4">
+        <a
+          href="https://www.instagram.com/vendii.global/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 border border-black/10 rounded-full hover:border-black transition-all hover:scale-105"
+        >
+          <Instagram className="h-5 w-5 text-black hover:text-black/80" />
+        </a>
+        <a
+          href="https://linkedin.com/company/vendii"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 border border-black/10 rounded-full hover:border-black transition-all hover:scale-105"
+        >
+          <Linkedin className="h-5 w-5 text-black hover:text-black/80" />
+        </a>
+      </div>
+
+      {/* Copyright & Privacy */}
       <p>
         © {new Date().getFullYear()} Atelier Fragrances —{" "}
         <button
@@ -871,84 +908,49 @@ function Footer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Modal Box */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="relative mx-4 max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-black/10 bg-white p-8 shadow-2xl"
             >
               <h2 className="text-2xl font-serif mb-4">Privacy Policy</h2>
-              <p className="text-xs text-black/50 mb-6">Effective Date: 1st January 2025</p>
+              <p className="text-xs text-black/50 mb-6">
+                Effective Date: 1st January 2025
+              </p>
 
               <div className="text-left text-black/80 space-y-5 text-sm leading-relaxed">
                 <p>
-                  This Privacy Policy describes how <strong>Vendii Ltd</strong> ("we," "us," or "our")
-                  collects, uses, and shares personal information when you visit or use our website
-                  <strong> www.vendii.global</strong> (the "Site").
+                  This Privacy Policy describes how <strong>Vendii Ltd</strong>{" "}
+                  ("we," "us," or "our") collects, uses, and shares personal
+                  information when you visit or use our website{" "}
+                  <strong>www.vendii.global</strong> (the "Site").
                 </p>
 
                 <h3 className="font-semibold mt-6">1. Information We Collect</h3>
                 <p>
-                  We collect personal information that you voluntarily provide to us. This may include:
-                </p>
-                <ul className="list-disc list-inside">
-                  <li>Email address: If you choose to provide it in order to be contacted by us.</li>
-                  <li>Mobile number: If you choose to provide it when requesting to be contacted.</li>
-                </ul>
-                <p>
-                  We may also automatically collect information such as your IP address, browser type,
-                  referring site, and interactions with the Site.
+                  We collect personal information that you voluntarily provide,
+                  including your email or mobile number when contacting us.
                 </p>
 
                 <h3 className="font-semibold mt-6">2. How We Use Your Information</h3>
+                <ul className="list-disc list-inside">
+                  <li>To operate and improve our services.</li>
+                  <li>To respond to inquiries and communicate with you.</li>
+                  <li>To analyze trends and enhance user experience.</li>
+                </ul>
+
+                <h3 className="font-semibold mt-6">3. Data Security</h3>
                 <p>
-                  We use your information to:
-                  <ul className="list-disc list-inside">
-                    <li>Provide and improve our Site and services.</li>
-                    <li>Communicate with you about updates or inquiries.</li>
-                    <li>Analyse trends to enhance user experience.</li>
-                    <li>Comply with applicable legal obligations.</li>
-                  </ul>
+                  We use encryption, access controls, and secure environments to
+                  protect your information, but no system is entirely secure.
                 </p>
 
-                <h3 className="font-semibold mt-6">3. Sharing Your Information</h3>
+                <h3 className="font-semibold mt-6">4. Contact Us</h3>
                 <p>
-                  We may share your data with trusted service providers (hosting, analytics) or legal
-                  authorities where required by law.
-                </p>
-
-                <h3 className="font-semibold mt-6">4. Data Security</h3>
-                <p>
-                  We take reasonable measures — including encryption, access controls, and physical
-                  safeguards — to protect your information, though no method is 100% secure.
-                </p>
-
-                <h3 className="font-semibold mt-6">5. Your Choices</h3>
-                <p>
-                  You can request data removal, opt out of communications, or disable cookies in your
-                  browser. Contact us at <strong>hello@vendii.com</strong>.
-                </p>
-
-                <h3 className="font-semibold mt-6">6. Data Retention</h3>
-                <p>
-                  We retain data only as long as necessary to fulfil our purposes or as required by law.
-                </p>
-
-                <h3 className="font-semibold mt-6">7. Children's Privacy</h3>
-                <p>
-                  The Site is not intended for children under 16. We do not knowingly collect their data.
-                </p>
-
-                <h3 className="font-semibold mt-6">8. Changes to This Policy</h3>
-                <p>
-                  Updates may be made periodically and posted here. Please review this policy regularly.
-                </p>
-
-                <h3 className="font-semibold mt-6">9. Contact Us</h3>
-                <p>
-                  For questions, please contact us at <strong>hello@vendii.com</strong>.
+                  If you have any questions, please contact us at{" "}
+                  <strong>hello@vendii.com</strong>.
                 </p>
               </div>
 
