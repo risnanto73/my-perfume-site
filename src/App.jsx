@@ -11,7 +11,9 @@ import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
 import heroBottle from "./assets/video-vending.avif";
-import logo from "./assets/vendii-logo.png"
+import logo from "./assets/vendii-logo.png";
+import challengeIcon from "./assets/the-challange.svg";
+import answerIcon from "./assets/our-answer.svg";
 
 
 // Monochrome Perfume Landing Page (Black & White Theme)
@@ -115,25 +117,32 @@ function Hero() {
             Uncover tomorrow's winning fragrances, today{" "}
             <span className="h-1 w-1 rounded-full bg-black" />
           </p>
+
           <h1 className="font-serif text-5xl leading-[1.1] md:text-6xl">
             Data & AI-driven fragrance evaluation for modern{" "}
             <span className="mx-4 inline-block rotate-2 rounded bg-black px-3 pb-1 pt-2 font-sans text-4xl uppercase tracking-widest text-white md:text-5xl">
               perfumery
             </span>
           </h1>
+
           <p className="mt-6 max-w-xl text-black/70">
             The fragrance evaluation platform that helps fragrance houses
             discover tomorrow’s winning creations, today — combining structured
             consumer testing, digital feedback, and AI-powered insights.
           </p>
+
+          {/* CTA Button */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button className="rounded-2xl border border-black bg-black px-6 py-2 text-white hover:bg-white hover:text-black">
+            <button className="rounded-2xl border border-black bg-black px-6 py-2 text-white hover:bg-white hover:text-black transition-all duration-300">
               GET IN TOUCH
             </button>
           </div>
+
+          {/* Testimonial */}
+          <p className="mt-6 text-sm text-black/60"> “Vendii’s evaluation platform was elegant, effortless, and exceeded all expectations.”{" "} <span className="font-medium text-black">— Kajal Perfumes Paris</span> </p>
         </motion.div>
 
-        {/* Full Image Section (no card) */}
+        {/* Image Section */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
@@ -150,7 +159,6 @@ function Hero() {
     </section>
   );
 }
-
 
 function Badges() {
   const items = [
@@ -254,23 +262,26 @@ function StorySection() {
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, rotateZ: -1 }}
             transition={{ type: "spring", stiffness: 150 }}
-            className="relative p-10 rounded-[3rem_3rem_6rem_3rem] border border-black/10 bg-white shadow-sm 
-                       hover:shadow-xl transition-all duration-500"
+            className="relative p-10 rounded-[3rem_3rem_6rem_3rem] border border-black/10 bg-white shadow-sm hover:shadow-xl transition-all duration-500 text-center"
           >
-            {/* Puzzle notch on right side (desktop) */}
-            <div className="hidden md:block absolute -right-8 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-white border border-black/10 shadow-sm" />
-
-            {/* Puzzle notch on bottom (mobile) */}
-            <div className="md:hidden absolute bottom-[-0.75rem] left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white border border-black/10 shadow-sm" />
-
-            <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 flex items-center gap-2">
-              The Challenge 🧩
+            <img
+              src={challengeIcon}
+              alt="The Challenge"
+              className="mx-auto mb-6 h-20 w-20 object-contain"
+            />
+            <h3 className="text-lg font-semibold uppercase tracking-wider mb-3">
+              The Challenge
             </h3>
             <p className="text-black/70 leading-relaxed">
               Fragrance houses create dozens of trial blends, but decisions often rely on instinct
               or brand perception. Without structured consumer insight, it’s hard to know which
               creations will truly resonate.
             </p>
+
+            {/* Puzzle notch right (desktop) */}
+            <div className="hidden md:block absolute -right-8 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-white border border-black/10 shadow-sm" />
+            {/* Puzzle notch bottom (mobile) */}
+            <div className="md:hidden absolute bottom-[-0.75rem] left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white border border-black/10 shadow-sm" />
           </motion.div>
 
           {/* Puzzle Right */}
@@ -282,23 +293,26 @@ function StorySection() {
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, rotateZ: 1 }}
             transition={{ type: "spring", stiffness: 150 }}
-            className="relative p-10 rounded-[3rem_6rem_3rem_3rem] border border-black/10 bg-white shadow-sm 
-                       hover:shadow-xl transition-all duration-500"
+            className="relative p-10 rounded-[3rem_6rem_3rem_3rem] border border-black/10 bg-white shadow-sm hover:shadow-xl transition-all duration-500 text-center"
           >
-            {/* Puzzle notch on left (desktop) */}
-            <div className="hidden md:block absolute -left-8 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-white border border-black/10 shadow-sm" />
-
-            {/* Puzzle notch on top (mobile) */}
-            <div className="md:hidden absolute -top-6 left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white border border-black/10 shadow-sm" />
-
-            <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 flex items-center gap-2">
-              Our Answer 💡
+            <img
+              src={answerIcon}
+              alt="Our Answer"
+              className="mx-auto mb-6 h-20 w-20 object-contain"
+            />
+            <h3 className="text-lg font-semibold uppercase tracking-wider mb-3">
+              Our Answer
             </h3>
             <p className="text-black/70 leading-relaxed">
               Vendii provides a clear, evidence-based way to evaluate fragrances — helping houses
               identify strengths, uncover weaknesses, and refine creations through structured testing
               and data science.
             </p>
+
+            {/* Puzzle notch left (desktop) */}
+            <div className="hidden md:block absolute -left-8 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-white border border-black/10 shadow-sm" />
+            {/* Puzzle notch top (mobile) */}
+            <div className="md:hidden absolute -top-6 left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white border border-black/10 shadow-sm" />
           </motion.div>
         </div>
       </div>
