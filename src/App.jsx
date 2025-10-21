@@ -27,7 +27,7 @@ const stagger = {
 function Nav() {
   const [open, setOpen] = React.useState(false);
   return (
-    <div className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur-md">
+    <div className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur-md" name="Navbar" >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <a href="#" className="font-serif text-2xl tracking-wide">VENDII</a>
         <div className="hidden items-center gap-8 md:flex">
