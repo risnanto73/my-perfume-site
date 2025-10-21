@@ -10,7 +10,7 @@ import collect from "./assets/collect.png";
 import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
-import heroBottle from "./assets/vendii-machine.png";
+import heroBottle from "./assets/video-vending.avif";
 
 
 // Monochrome Perfume Landing Page (Black & White Theme)
@@ -72,11 +72,18 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-white pt-28" id="home">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.06),transparent_40%)]" />
+
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-10 sm:px-6 md:grid-cols-2 md:items-center">
         {/* Text Section */}
-        <motion.div variants={fadeIn} initial="hidden" animate="show" className="relative">
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          animate="show"
+          className="relative"
+        >
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em]">
-            Uncover tomorrow's winning fragrances, today <span className="h-1 w-1 rounded-full bg-black" />
+            Uncover tomorrow's winning fragrances, today{" "}
+            <span className="h-1 w-1 rounded-full bg-black" />
           </p>
           <h1 className="font-serif text-5xl leading-[1.1] md:text-6xl">
             Data & AI-driven fragrance evaluation for modern{" "}
@@ -85,43 +92,40 @@ function Hero() {
             </span>
           </h1>
           <p className="mt-6 max-w-xl text-black/70">
-            The fragrance evaluation platform that helps fragrance houses discover tomorrow’s winning creations, today — combining structured consumer testing, digital feedback, and AI-powered insights.
+            The fragrance evaluation platform that helps fragrance houses
+            discover tomorrow’s winning creations, today — combining structured
+            consumer testing, digital feedback, and AI-powered insights.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <button className="rounded-2xl border border-black bg-black px-6 py-2 text-white hover:bg-white hover:text-black">
               GET IN TOUCH
             </button>
           </div>
-          <p className="mt-6 text-sm text-black/60">
-            “Vendii’s evaluation platform was elegant, effortless, and exceeded all expectations.” {" "}
-            <span className="font-medium text-black"></span>{""} — <span className="font-medium text-black">Kajal Perfumes Paris</span>
-          </p>
         </motion.div>
 
-        {/* Image Box */}
-        <motion.div variants={fadeIn} initial="hidden" animate="show" className="relative">
-          <div className="relative mx-auto aspect-[4/5] w-80 max-w-full rounded-3xl border border-black/10 bg-gradient-to-b from-white to-black/5 shadow-2xl overflow-hidden">
-            {/* Inner Glass Layer */}
-            <div className="absolute inset-4 rounded-2xl border border-black/10 bg-white/80 backdrop-blur-sm" />
+        {/* Full Image Card */}
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          animate="show"
+          className="relative flex justify-center"
+        >
+          <div className="relative mx-auto aspect-[4/5] w-80 max-w-full rounded-3xl border border-black/10 shadow-2xl overflow-hidden bg-white">
+            {/* Inner glass frame */}
+            <div className="absolute inset-4 rounded-2xl border border-black/10 bg-white/70 backdrop-blur-sm z-0" />
 
-            {/* Label Top */}
-            <div className="absolute inset-x-8 top-8 rounded-md border border-black/20 bg-white/90 py-2 text-center font-serif text-xl tracking-wide z-10">
+            {/* Top label */}
+            <div className="absolute inset-x-8 top-8 z-20 rounded-md border border-black/20 bg-white/90 py-2 text-center font-serif text-xl tracking-wide shadow-sm">
               VENDII GLOBAL
             </div>
 
-            {/* Gambar di Tengah */}
-            <div className="absolute inset-0 flex items-center justify-center z-0">
+            {/* Full image area */}
+            <div className="absolute top-[4.5rem] bottom-[1rem] left-4 right-4 z-10 overflow-hidden rounded-2xl">
               <img
                 src={heroBottle}
                 alt="Vendii Perfume Bottle"
-                className="h-[70%] w-auto object-contain opacity-90 transition-transform duration-700 hover:scale-105"
+                className="w-full h-full object-cover object-center scale-100 transition-transform duration-700 hover:scale-105"
               />
-            </div>
-
-            {/* Label Bottom */}
-            <div className="absolute inset-x-10 bottom-10 flex flex-col items-center z-10">
-              <div className="mb-2 h-6 w-12 rounded-sm border border-black/30 bg-white/80" />
-              <p className="text-xs uppercase tracking-[0.25em] text-black/70">Eau de Parfum</p>
             </div>
           </div>
         </motion.div>
@@ -420,10 +424,10 @@ function AboutUs() {
 function ReviewsCarousel() {
   const reviews = [
     {
-      name: "Amira L.",
-      company: "Creative Perfumes Lab",
+      name: "Jo Khalaf",
+      company: "Kajal Perfumes Paris",
       quote:
-        "Vendii transformed the way we evaluate fragrances. The platform provided clarity and data we never had before.",
+        "We enlisted Vendii for our fragrance evaluation, and it was exceptional from start to finish. The bespoke web-app was elegant in design and effortless to use, it brought a real sense of refinement and ease to the entire process. The Vendii team were a pleasure to work with — thoughtful, accommodating, and meticulous in ensuring every detail was aligned with our needs. The final data report was insightful, beautifully presented, and beyond expectations — a first-class experience.",
       rating: 5,
     },
     {
