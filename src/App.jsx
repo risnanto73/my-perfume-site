@@ -251,7 +251,7 @@ function StorySection() {
         </motion.h2>
 
         {/* Two Columns */}
-        <div className="grid gap-16 md:grid-cols-2">
+        <div className="grid gap-20 md:grid-cols-2">
           {/* Left */}
           <motion.div
             variants={fade}
@@ -264,11 +264,8 @@ function StorySection() {
             <img
               src={challengeIcon}
               alt="The Challenge"
-              className="h-20 w-20 mb-6 object-contain"
+              className="h-32 w-32 mb-8 object-contain transition-transform duration-500 hover:scale-105"
             />
-            <h3 className="text-lg font-semibold uppercase tracking-wider mb-3">
-              The Challenge
-            </h3>
             <p className="text-black/70 leading-relaxed max-w-md">
               Fragrance houses create dozens of trial blends, but decisions often rely on instinct
               or brand perception. Without structured consumer insight, it’s hard to know which
@@ -288,11 +285,8 @@ function StorySection() {
             <img
               src={answerIcon}
               alt="Our Answer"
-              className="h-20 w-20 mb-6 object-contain"
+              className="h-32 w-32 mb-8 object-contain transition-transform duration-500 hover:scale-105"
             />
-            <h3 className="text-lg font-semibold uppercase tracking-wider mb-3">
-              Our Answer
-            </h3>
             <p className="text-black/70 leading-relaxed max-w-md">
               Vendii provides a clear, evidence-based way to evaluate fragrances — helping houses
               identify strengths, uncover weaknesses, and refine creations through structured testing
@@ -304,6 +298,7 @@ function StorySection() {
     </section>
   );
 }
+
 
 function AboutUs() {
   return (
