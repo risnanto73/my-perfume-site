@@ -218,11 +218,10 @@ function Badges() {
 
 function StorySection() {
   const fade = {
-    hidden: { opacity: 0, y: 60, rotateZ: 5 },
+    hidden: { opacity: 0, y: 60 },
     show: (i = 1) => ({
       opacity: 1,
       y: 0,
-      rotateZ: 0,
       transition: {
         delay: i * 0.2,
         duration: 0.9,
@@ -238,81 +237,67 @@ function StorySection() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04),transparent_70%)] pointer-events-none" />
 
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className="relative mx-auto max-w-6xl px-6 text-center">
         {/* Title */}
         <motion.h2
           variants={fade}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="text-center font-serif text-4xl md:text-5xl mb-16"
+          className="font-serif text-4xl md:text-5xl mb-16"
         >
           From <span className="italic text-black/80">Guesswork</span> to{" "}
           <span className="font-semibold">Clarity</span>
         </motion.h2>
 
-        {/* Puzzle Container */}
-        <div className="grid gap-10 md:grid-cols-2">
-          {/* Puzzle Left */}
+        {/* Two Columns */}
+        <div className="grid gap-16 md:grid-cols-2">
+          {/* Left */}
           <motion.div
             variants={fade}
             custom={0}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            whileHover={{ scale: 1.02, rotateZ: -1 }}
-            transition={{ type: "spring", stiffness: 150 }}
-            className="relative p-10 rounded-[3rem_3rem_6rem_3rem] border border-black/10 bg-white shadow-sm hover:shadow-xl transition-all duration-500 text-center"
+            className="flex flex-col items-center text-center"
           >
             <img
               src={challengeIcon}
               alt="The Challenge"
-              className="mx-auto mb-6 h-20 w-20 object-contain"
+              className="h-20 w-20 mb-6 object-contain"
             />
             <h3 className="text-lg font-semibold uppercase tracking-wider mb-3">
               The Challenge
             </h3>
-            <p className="text-black/70 leading-relaxed">
+            <p className="text-black/70 leading-relaxed max-w-md">
               Fragrance houses create dozens of trial blends, but decisions often rely on instinct
               or brand perception. Without structured consumer insight, it’s hard to know which
               creations will truly resonate.
             </p>
-
-            {/* Puzzle notch right (desktop) */}
-            <div className="hidden md:block absolute -right-8 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-white border border-black/10 shadow-sm" />
-            {/* Puzzle notch bottom (mobile) */}
-            <div className="md:hidden absolute bottom-[-0.75rem] left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white border border-black/10 shadow-sm" />
           </motion.div>
 
-          {/* Puzzle Right */}
+          {/* Right */}
           <motion.div
             variants={fade}
             custom={1}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            whileHover={{ scale: 1.02, rotateZ: 1 }}
-            transition={{ type: "spring", stiffness: 150 }}
-            className="relative p-10 rounded-[3rem_6rem_3rem_3rem] border border-black/10 bg-white shadow-sm hover:shadow-xl transition-all duration-500 text-center"
+            className="flex flex-col items-center text-center"
           >
             <img
               src={answerIcon}
               alt="Our Answer"
-              className="mx-auto mb-6 h-20 w-20 object-contain"
+              className="h-20 w-20 mb-6 object-contain"
             />
             <h3 className="text-lg font-semibold uppercase tracking-wider mb-3">
               Our Answer
             </h3>
-            <p className="text-black/70 leading-relaxed">
+            <p className="text-black/70 leading-relaxed max-w-md">
               Vendii provides a clear, evidence-based way to evaluate fragrances — helping houses
               identify strengths, uncover weaknesses, and refine creations through structured testing
               and data science.
             </p>
-
-            {/* Puzzle notch left (desktop) */}
-            <div className="hidden md:block absolute -left-8 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-white border border-black/10 shadow-sm" />
-            {/* Puzzle notch top (mobile) */}
-            <div className="md:hidden absolute -top-6 left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white border border-black/10 shadow-sm" />
           </motion.div>
         </div>
       </div>
