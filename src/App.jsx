@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Star, Menu, X, FlaskConical, BarChart3, Lightbulb, Cpu, Settings, Headphones, Instagram, Linkedin } from "lucide-react";
+import {
+  Star, Menu, X, FlaskConical, BarChart3, Lightbulb, Cpu, Settings, Headphones, Instagram, Linkedin,
+  Scale,
+  ShieldCheck,
+} from "lucide-react";
 import construc from "./assets/construct.png";
 import collect from "./assets/collect.png";
 import capture from "./assets/capture.png";
 import reveal from "./assets/reveal.png";
 import report from "./assets/report.png";
-import heroBottle from "./assets/vendii-water.svg";
+import heroBottle from "./assets/vendii-bg.png";
 import logo from "./assets/vendii-logo.png";
 import challengeIcon from "./assets/the-challange.svg";
 import answerIcon from "./assets/our-answer.svg";
+import joKajal from "./assets/jo-kajal.avif"
 
 
 // Monochrome Perfume Landing Page (Black & White Theme)
@@ -48,14 +53,11 @@ function Nav() {
           <a href="#why-vendii" className="text-sm uppercase tracking-widest hover:opacity-70">
             WHY VENDII
           </a>
-          <a href="#contact" className="text-sm uppercase tracking-widest hover:opacity-70">
-            CONTACT
-          </a>
-          <a href="#contact">
+          {/* <a href="#contact">
             <button className="rounded-2xl border border-black bg-black px-5 py-2 text-white hover:bg-white hover:text-black">
               GET IN TOUCH
             </button>
-          </a>
+          </a> */}
         </div>
 
         {/* Menu mobile toggle */}
@@ -73,7 +75,6 @@ function Nav() {
                 ["ABOUT US", "#about-us"],
                 ["HOW IT WORKS", "#how-it-works"],
                 ["WHY VENDII", "#why-vendii"],
-                ["CONTACT", "#contact"],
               ].map(([label, href]) => (
                 <a
                   key={label}
@@ -84,9 +85,6 @@ function Nav() {
                   {label}
                 </a>
               ))}
-              <button className="w-full rounded-2xl border border-black bg-black py-2 text-white hover:bg-white hover:text-black">
-                GET IN TOUCH
-              </button>
             </div>
           </div>
         </div>
@@ -98,12 +96,16 @@ function Nav() {
 function Hero() {
   const [offsetTop, setOffsetTop] = useState(0);
 
+  const items = [
+    { title: "Bias-free testing", icon: FlaskConical },
+    { title: "Impactful data reports", icon: BarChart3 },
+    { title: "Smarter fragrance evaluations", icon: Lightbulb },
+  ];
+
   // Ambil tinggi navbar secara dinamis
   useLayoutEffect(() => {
     const nav = document.querySelector("div[name='Navbar']");
-    if (nav) {
-      setOffsetTop(nav.offsetHeight); // tinggi aktual navbar
-    }
+    if (nav) setOffsetTop(nav.offsetHeight);
   }, []);
 
   return (
@@ -111,14 +113,13 @@ function Hero() {
       id="home"
       className="relative overflow-hidden bg-white transition-all duration-300"
       style={{
-        paddingTop: `${offsetTop + 32}px`, // kasih jarak kecil biar napas
-        paddingBottom: "5rem",
+        paddingTop: `${offsetTop + 32}px`,
+        paddingBottom: "2rem", // dikurangi supaya rapat ke bagian bawah
       }}
     >
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.06),transparent_40%)]" />
 
-      {/* Grid content */}
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-2 md:items-center">
         {/* Text Section */}
         <motion.div
@@ -128,21 +129,15 @@ function Hero() {
           className="relative"
         >
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em]">
-            Uncover tomorrow's winning fragrances, today{" "}
-            <span className="h-1 w-1 rounded-full bg-black" />
+            Uncover tomorrow's winning fragrances, today
           </p>
 
-          <h1 className="font-serif text-5xl leading-[1.1] md:text-6xl">
-            Data & AI-driven fragrance evaluation for modern{" "}
-            <span className="mx-4 inline-block rotate-2 rounded bg-black px-3 pb-1 pt-2 font-sans text-4xl uppercase tracking-widest text-white md:text-5xl">
-              perfumery
-            </span>
+          <h1 className="font-mono text-5xl leading-[1.1] md:text-6xl">
+            Data & AI-driven fragrance evaluation for modern perfumery
           </h1>
 
           <p className="mt-6 max-w-xl text-black/70">
-            The fragrance evaluation platform that helps fragrance houses
-            discover tomorrow’s winning creations, today — combining structured
-            consumer testing, digital feedback, and AI-powered insights.
+            Test unreleased scents with real consumers. Get unbiased, AI-powered insights to guide development and launches.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -153,10 +148,10 @@ function Hero() {
             </a>
           </div>
 
-          <p className="mt-6 text-sm text-black/60">
+          <p className="mt-6 text-md italic text-black/60">
             “Vendii’s evaluation platform was elegant, effortless, and exceeded
             all expectations.”{" "}
-            <span className="font-medium text-black">
+            <span className="font-medium italic text-black">
               — Kajal Perfumes Paris
             </span>
           </p>
@@ -176,62 +171,31 @@ function Hero() {
           />
         </motion.div>
       </div>
-    </section>
-  );
-}
 
-function Badges() {
-  const items = [
-    { title: "Bias-free testing", icon: FlaskConical },
-    { title: "Impactful data reports", icon: BarChart3 },
-    { title: "Smarter fragrance evaluations", icon: Lightbulb },
-  ];
-
-  return (
-    <section className="bg-white py-24 border-y border-black/10">
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        {/* ✨ Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="font-serif text-4xl md:text-5xl mb-14 leading-tight"
-        >
-          Trust the{" "}
-          <span className="italic font-thin text-black/90">Power</span>{" "}
-          of Vendii
-        </motion.h2>
-
-        {/* Badge Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid gap-12 text-center sm:grid-cols-3"
-        >
-          {items.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={i}
-                className="flex flex-col items-center gap-4 group"
-              >
-                {/* Circle Icon */}
-                <div className="flex h-20 w-20 items-center justify-center rounded-full border border-black/10 bg-white transition-all duration-500 group-hover:bg-black group-hover:scale-105">
-                  <Icon className="h-8 w-8 text-black transition-colors duration-500 group-hover:text-white" />
-                </div>
-
-                {/* Title */}
-                <h3 className="font-serif text-xl tracking-wide transition-all duration-300 group-hover:text-black/80">
-                  {item.title}
-                </h3>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="grid gap-12 text-center sm:grid-cols-3 pt-12"
+      >
+        {items.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={i}
+              className="flex flex-col items-center gap-4 group"
+            >
+              <div className="flex h-20 w-20 items-center justify-center rounded-full border border-black/10 bg-white transition-all duration-500 group-hover:bg-black group-hover:scale-105">
+                <Icon className="h-8 w-8 text-black transition-colors duration-500 group-hover:text-white" />
               </div>
-            );
-          })}
-        </motion.div>
-      </div>
+              <h3 className="font-mono text-xl tracking-wide transition-all duration-300 group-hover:text-black/80">
+                {item.title}
+              </h3>
+            </div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }
@@ -284,7 +248,7 @@ function StorySection() {
             <img
               src={challengeIcon}
               alt="The Challenge"
-              className="h-32 w-32 mb-8 object-contain transition-transform duration-500 hover:scale-105"
+              className="h-50 w-50 mb-8 object-contain transition-transform duration-500 hover:scale-105"
             />
             <p className="text-black/70 leading-relaxed max-w-md">
               Fragrance houses create dozens of trial blends, but decisions often rely on instinct
@@ -305,7 +269,7 @@ function StorySection() {
             <img
               src={answerIcon}
               alt="Our Answer"
-              className="h-32 w-32 mb-8 object-contain transition-transform duration-500 hover:scale-105"
+              className="h-52 w-52 mb-8 object-contain transition-transform duration-500 hover:scale-105"
             />
             <p className="text-black/70 leading-relaxed max-w-md">
               Vendii provides a clear, evidence-based way to evaluate fragrances — helping houses
@@ -318,7 +282,6 @@ function StorySection() {
     </section>
   );
 }
-
 
 function AboutUs() {
   return (
@@ -356,26 +319,26 @@ function AboutUs() {
   );
 }
 
-function ReviewsCarousel() {
+function ReviewsShowcase() {
   const reviews = [
     {
-      name: "Jo Khalaf",
-      company: "Kajal Perfumes Paris",
       quote:
         "We enlisted Vendii for our fragrance evaluation, and it was exceptional from start to finish. The bespoke web-app was elegant in design and effortless to use, it brought a real sense of refinement and ease to the entire process. The Vendii team were a pleasure to work with — thoughtful, accommodating, and meticulous in ensuring every detail was aligned with our needs. The final data report was insightful, beautifully presented, and beyond expectations — a first-class experience.",
-      rating: 5,
+      name: "Jo Khalaf",
+      title: "",
+      company: "Kajal Perfumes Paris",
+      image: joKajal, // pastikan ini benar-benar terimport
     },
   ];
 
   const [index, setIndex] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
 
-  // Auto-scroll
   React.useEffect(() => {
     if (paused) return;
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % reviews.length);
-    }, 6000); // ganti setiap 6 detik
+    }, 7000);
     return () => clearInterval(timer);
   }, [paused, reviews.length]);
 
@@ -390,14 +353,14 @@ function ReviewsCarousel() {
       id="reviews"
       className="relative bg-white py-28 border-y border-black/10 overflow-hidden"
     >
-      <div className="mx-auto max-w-4xl px-6 text-center">
+      <div className="mx-auto max-w-6xl px-6">
         {/* Header */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-5xl mb-4"
+          className="font-serif text-4xl md:text-5xl text-center mb-4"
         >
           What Our Clients Say
         </motion.h2>
@@ -406,14 +369,14 @@ function ReviewsCarousel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-black/60 mb-12 max-w-2xl mx-auto"
+          className="text-black/60 mb-12 text-center max-w-2xl mx-auto"
         >
           Real feedback from teams who turned intuition into evidence.
         </motion.p>
 
-        {/* Review Carousel */}
+        {/* Review display */}
         <div
-          className="relative min-h-[300px]"
+          className="relative rounded-3xl overflow-hidden border border-black/10 bg-white shadow-sm transition-all duration-500"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -424,39 +387,49 @@ function ReviewsCarousel() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="rounded-3xl border border-black/10 bg-white shadow-lg p-10 md:p-12 mx-auto max-w-3xl"
+              className="grid md:grid-cols-2"
             >
-              {/* Stars */}
-              <div className="flex justify-center mb-4">
-                {[...Array(reviews[index].rating)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-black text-black" />
-                ))}
+              {/* LEFT: text */}
+              <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                <p className="text-sm md:text-sm-lg lg:text-sm font-normal text-black leading-relaxed mb-8">
+                  “{reviews[index].quote}”
+                </p>
+
+                <div className="mt-6 border-t border-black/10 pt-4">
+                  <p className="font-semibold text-base md:text-lg text-black">
+                    {reviews[index].name}
+                  </p>
+                  {reviews[index].title ? (
+                    <p className="text-black/60 text-sm">{reviews[index].title}</p>
+                  ) : null}
+                  <p className="text-black/60 text-sm">{reviews[index].company}</p>
+                </div>
               </div>
 
-              {/* Quote */}
-              <p className="text-black/80 italic leading-relaxed mb-8 text-lg md:text-xl">
-                “{reviews[index].quote}”
-              </p>
-
-              {/* Name */}
-              <div className="text-sm text-black/70">
-                <p className="font-medium">{reviews[index].name}</p>
-                <p className="text-black/50">{reviews[index].company}</p>
+              {/* RIGHT: image (logo/foto) */}
+              <div className="relative flex items-center justify-center bg-white p-8 md:p-10">
+                <img
+                  src={reviews[index].image}
+                  alt={reviews[index].name}
+                  // object-contain agar tidak terpotong, max size responsif
+                  className="max-h-64 md:max-h-80 lg:max-h-96 w-auto object-contain"
+                />
               </div>
             </motion.div>
           </AnimatePresence>
+        </div>
 
-          {/* Dots navigation */}
-          <div className="flex justify-center gap-2 mt-8">
-            {reviews.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                className={`h-2 w-2 rounded-full transition-all duration-300 ${i === index ? "bg-black w-4" : "bg-black/20"
-                  }`}
-              />
-            ))}
-          </div>
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {reviews.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                i === index ? "bg-black w-4" : "bg-black/20"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -597,32 +570,46 @@ function WhyChooseVendii() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"], // aktif saat mulai & selesai scroll section
+    offset: ["start end", "end start"],
   });
 
-  // Parallax transform
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -40]); // card 1
-  const y2 = useTransform(scrollYProgress, [0, 1], [20, -20]); // card 2
-  const y3 = useTransform(scrollYProgress, [0, 1], [40, 0]);   // card 3
+  // Parallax effect
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [40, 0]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [60, 10]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [80, 20]);
 
   const features = [
     {
-      title: "Innovative Technology",
-      text: "Our vending machines are equipped with the latest technology to ensure a seamless user experience.",
-      icon: Cpu,
+      title: "Bias-free testing",
+      text: "Cut through brand perception and gut feel with structured, unbiased consumer feedback.",
+      icon: FlaskConical,
       y: y1,
     },
     {
-      title: "Customizable Solutions",
-      text: "We tailor our vending solutions to meet the unique needs of your business and location.",
-      icon: Settings,
+      title: "Evidence-based decisions",
+      text: "Know which creations resonate and why, with confidence grounded in real data.",
+      icon: BarChart3,
       y: y2,
     },
     {
-      title: "Exceptional Support",
-      text: "Our dedicated support team is always ready to assist you with any questions or issues.",
-      icon: Headphones,
+      title: "Impactful reports",
+      text: "Clear, compelling insights designed to guide R&D teams and strengthen client presentations.",
+      icon: Lightbulb,
       y: y3,
+    },
+    {
+      title: "Smarter evaluations",
+      text: "Refine, compare, and select fragrances more effectively.",
+      icon: Scale,
+      y: y4,
+    },
+    {
+      title: "Standards & ethics",
+      text: "We prioritise data integrity, participant privacy, and unbiased reporting. Our methods align with industry best practice (ESOMAR principles; ISO 20252 research quality mindset).",
+      icon: ShieldCheck,
+      y: y5,
     },
   ];
 
@@ -650,7 +637,7 @@ function WhyChooseVendii() {
           transition={{ duration: 0.8 }}
           className="font-serif text-4xl md:text-5xl mb-4"
         >
-          Why Choose Vendii
+          Why Vendii
         </motion.h2>
 
         <motion.p
@@ -660,11 +647,11 @@ function WhyChooseVendii() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="text-black/60 max-w-2xl mx-auto mb-16"
         >
-          The smarter way to deliver fragrance experiences — powered by innovation, crafted with precision.
+          The smarter way to deliver fragrance experiences — powered by data, guided by integrity.
         </motion.p>
 
         {/* Features Grid */}
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -675,7 +662,7 @@ function WhyChooseVendii() {
                 whileInView="show"
                 custom={i}
                 viewport={{ once: true, amount: 0.3 }}
-                style={{ y: item.y }} // 🎯 Parallax movement
+                style={{ y: item.y }}
                 className="group rounded-3xl border border-black/10 bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-500"
               >
                 <div className="flex flex-col items-center text-center space-y-5">
@@ -714,8 +701,6 @@ function GetInTouch() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSuccess(true);
-
-    // Auto-hide toast after 3 seconds
     setTimeout(() => setSuccess(false), 3000);
   };
 
@@ -724,99 +709,86 @@ function GetInTouch() {
       id="contact"
       className="relative bg-white py-28 border-y border-black/10 overflow-hidden"
     >
-      {/* Subtle background texture */}
+      {/* Background texture */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03),transparent_70%)] pointer-events-none" />
 
-      <div className="mx-auto max-w-4xl px-6 relative z-10">
-        {/* Header */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+      <div className="mx-auto max-w-6xl px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
+        {/* ===== LEFT TEXT SECTION ===== */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-5xl text-center mb-4"
+          className="space-y-6"
         >
-          Get in Touch
-        </motion.h2>
+          <h2 className="font-serif text-5xl md:text-6xl leading-tight">
+            Data <span className="italic">applied</span>.<br />
+            <span className="text-black/70">Fragrance amplified.</span>
+          </h2>
+        </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-black/60 text-center mb-16 max-w-2xl mx-auto"
-        >
-          Interested in learning more about how Vendii can transform your fragrance evaluation process?{" "}
-          <span className="text-black font-medium">Reach out to us today!</span>
-        </motion.p>
-
-        {/* Form */}
+        {/* ===== RIGHT FORM SECTION ===== */}
         <motion.form
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="grid gap-6 sm:grid-cols-2"
           onSubmit={handleSubmit}
+          className="grid gap-6"
         >
           {/* Email */}
-          <div className="sm:col-span-2">
+          <div>
             <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
               Email
             </label>
             <input
               type="email"
-              placeholder="you@example.com"
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
 
-          {/* First Name */}
+          {/* Name */}
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
+                First Name
+              </label>
+              <input
+                type="text"
+                required
+                className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+              />
+            </div>
+            <div>
+              <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
+                Last Name
+              </label>
+              <input
+                type="text"
+                required
+                className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+              />
+            </div>
+          </div>
+
+          {/* Company */}
           <div>
-            <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
-              First Name
-            </label>
-            <input
-              type="text"
-              placeholder="John"
-              required
-              className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
-            />
-          </div>
-
-          {/* Last Name */}
-          <div>
-            <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
-              Last Name
-            </label>
-            <input
-              type="text"
-              placeholder="Doe"
-              required
-              className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
-            />
-          </div>
-
-          {/* Company Name */}
-          <div className="sm:col-span-2">
             <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
               Company Name
             </label>
             <input
               type="text"
-              placeholder="Vendii Labs"
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
 
           {/* Message */}
-          <div className="sm:col-span-2">
+          <div>
             <label className="text-sm uppercase tracking-widest text-black/60 block mb-2">
               Message
             </label>
             <textarea
-              placeholder="Tell us how we can help..."
               rows="5"
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
@@ -824,49 +796,34 @@ function GetInTouch() {
           </div>
 
           {/* Submit */}
-          <div className="sm:col-span-2 text-center">
+          <div className="text-right">
             <button
               type="submit"
               className="mt-4 inline-flex items-center justify-center rounded-2xl border border-black bg-black px-8 py-3 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black"
             >
-              Send Message
+              Submit
             </button>
           </div>
         </motion.form>
-
-        {/* Success Toast */}
-        <AnimatePresence>
-          {success && (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-2xl shadow-lg text-sm tracking-wide"
-            >
-              ✅ Message sent successfully!
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Footer tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-center mt-16"
-        >
-          <p className="text-black/60 uppercase tracking-widest text-sm">
-            Data applied.<br />
-            <span className="font-serif text-lg text-black">Fragrance amplified.</span>
-          </p>
-        </motion.div>
       </div>
+
+      {/* Success Toast */}
+      <AnimatePresence>
+        {success && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-2xl shadow-lg text-sm tracking-wide"
+          >
+            ✅ Message sent successfully!
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-
 function Footer() {
   const [open, setOpen] = useState(false);
   const hasShown = useRef(false); // untuk mencegah muncul berulang
@@ -899,7 +856,7 @@ function Footer() {
           <Instagram className="h-5 w-5 text-black hover:text-black/80" />
         </a>
         <a
-          href="https://linkedin.com/company/vendii"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 border border-black/10 rounded-full hover:border-black transition-all hover:scale-105"
@@ -970,7 +927,7 @@ function Footer() {
                 <h3 className="font-semibold mt-6">4. Contact Us</h3>
                 <p>
                   If you have any questions, please contact us at{" "}
-                  <strong>hello@vendii.com</strong>.
+                  <strong>hello@vendii.global</strong>.
                 </p>
               </div>
 
@@ -994,10 +951,9 @@ export default function App() {
     <main className="min-h-screen bg-white text-black">
       <Nav />
       <Hero />
-      <Badges />
       <StorySection />
       <AboutUs />
-      <ReviewsCarousel />
+      <ReviewsShowcase />
       <HowItWorks />
       <WhyChooseVendii />
       <GetInTouch />
