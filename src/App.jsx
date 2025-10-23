@@ -868,17 +868,21 @@ function Footer() {
           href="https://www.instagram.com/vendii.global/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit our Instagram page"
           className="p-2 border border-black/10 rounded-full hover:border-black transition-all hover:scale-105"
         >
           <Instagram className="h-5 w-5 text-black hover:text-black/80" />
+          <span className="sr-only">Instagram</span>
         </a>
         <a
           href="https://www.linkedin.com/company/vendii-ltd/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit our LinkedIn page"
           className="p-2 border border-black/10 rounded-full hover:border-black transition-all hover:scale-105"
         >
           <Linkedin className="h-5 w-5 text-black hover:text-black/80" />
+          <span className="sr-only">LinkedIn</span>
         </a>
       </div>
 
