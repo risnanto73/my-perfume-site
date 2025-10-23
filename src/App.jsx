@@ -61,8 +61,12 @@ function Nav() {
         </div>
 
         {/* Menu mobile toggle */}
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
+        <button
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
         </button>
       </div>
 
@@ -85,6 +89,14 @@ function Nav() {
                   {label}
                 </a>
               ))}
+            </div>
+            {/* Button Get In Touch */}
+            <div className="mt-4">
+              <a href="#contact">
+                <button className="w-full rounded-2xl border border-black bg-black px-5 py-2 text-white hover:bg-white hover:text-black">
+                  GET IN TOUCH
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -128,12 +140,15 @@ function Hero() {
           animate="show"
           className="relative"
         >
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em]">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1 text-[15px] uppercase tracking-[0.2em]">
             Uncover tomorrow's winning fragrances, today
           </p>
 
           <h1 className="font-mono text-5xl leading-[1.1] md:text-6xl">
-            Data & AI-driven fragrance evaluation for modern perfumery
+            Data & AI-driven fragrance evaluation for modern{" "}
+            <span className="inline-block rounded-xl bg-black px-3 py-1 text-white">
+              Perfumery
+            </span>
           </h1>
 
           <p className="mt-6 max-w-xl text-black/70">
@@ -228,10 +243,10 @@ function StorySection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="font-serif text-4xl md:text-5xl mb-16"
+          className="font-mono text-4xl md:text-5xl mb-16"
         >
-          From <span className="italic text-black/80">Guesswork</span> to{" "}
-          <span className="font-semibold">Clarity</span>
+          FROM <span className="italic font-mono text-black/80">GUESSWORK</span> TO{" "}
+          <span className="font-semibold font-mono">CLARITY</span>
         </motion.h2>
 
         {/* Two Columns */}
@@ -296,9 +311,9 @@ function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-5xl mb-8"
+          className="font-mono text-4xl md:text-5xl mb-8"
         >
-          About Us
+          ABOUT US
         </motion.h2>
 
         {/* Single Paragraph */}
@@ -360,9 +375,9 @@ function ReviewsShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-5xl text-center mb-4"
+          className="font-mono text-4xl md:text-5xl text-center mb-4"
         >
-          What Our Clients Say
+          WHAT OUR CLIENTS SAY
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -420,14 +435,14 @@ function ReviewsShowcase() {
         </div>
 
         {/* Dots */}
+        {/* Dots */}
         <div className="flex justify-center gap-2 mt-8">
           {reviews.map((_, i) => (
             <button
               key={i}
               onClick={() => setIndex(i)}
-              className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                i === index ? "bg-black w-4" : "bg-black/20"
-              }`}
+              aria-label={`Go to review ${i + 1}`}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${i === index ? "bg-black w-4" : "bg-black/20"}`}
             />
           ))}
         </div>
@@ -484,6 +499,23 @@ function HowItWorks() {
 
   return (
     <section id="how-it-works" className="bg-white py-28 border-y border-black/10">
+      {/* */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-12 px-4"
+      >
+        <h2 className="font-mono text-2xl md:text-2xl lg:text-4xl mb-4 tracking-wide uppercase">
+          HOW IT WORKS
+        </h2>
+
+        <p className="text-black/70 text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+          A structured, data-driven approach to fragrance evaluation — combining targeted consumer panels,
+          seamless digital testing, and AI-powered insights.
+        </p>
+      </motion.div>
       <div className="mx-auto max-w-7xl px-6 grid md:grid-cols-2 gap-10 items-start">
         {/* LEFT: Tabs */}
         <div className="relative">
@@ -510,7 +542,7 @@ function HowItWorks() {
 
                   {/* Description */}
                   <div>
-                    <h3 className="text-xl font-serif mb-2">
+                    <h3 className="text-xl font-mono mb-2">
                       Step {step.id}: {step.title}
                     </h3>
                     <p className="text-black/70 leading-relaxed">{step.desc}</p>
@@ -522,11 +554,6 @@ function HowItWorks() {
 
         {/* RIGHT: Image + Description */}
         <div className="space-y-3">
-          <h2 className="font-serif text-4xl md:text-5xl mb-8">HOW IT WORKS</h2>
-          <p className="text-black/60 mb-10">
-            A structured, data-driven approach to fragrance evaluation — combining targeted consumer panels, seamless digital testing, and AI-powered insights.
-          </p>
-
           <div className="flex flex-col space-y-2">
             {steps.map((step) => (
               <button
@@ -543,7 +570,7 @@ function HowItWorks() {
                   </span>
                   <div>
                     <p
-                      className={`font-semibold tracking-wide ${active === step.id ? "text-white" : "text-black"
+                      className={`font-semibold font-mono tracking-wide ${active === step.id ? "text-white" : "text-black"
                         }`}
                     >
                       {step.title}
@@ -635,7 +662,7 @@ function WhyChooseVendii() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-5xl mb-4"
+          className="font-mono text-4xl md:text-5xl mb-4"
         >
           Why Vendii
         </motion.h2>
@@ -669,7 +696,7 @@ function WhyChooseVendii() {
                   <div className="h-16 w-16 rounded-full border border-black/10 bg-black/5 flex items-center justify-center group-hover:bg-black transition-all duration-500">
                     <Icon className="h-7 w-7 text-black group-hover:text-white transition-colors duration-500" />
                   </div>
-                  <h3 className="font-serif text-xl">{item.title}</h3>
+                  <h3 className="font-mono text-xl">{item.title}</h3>
                   <p className="text-black/70 text-sm leading-relaxed">
                     {item.text}
                   </p>
@@ -721,9 +748,9 @@ function GetInTouch() {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h2 className="font-serif text-5xl md:text-6xl leading-tight">
-            Data <span className="italic">applied</span>.<br />
-            <span className="text-black/70">Fragrance amplified.</span>
+          <h2 className="font-mono text-5xl md:text-6xl leading-tight">
+            Data <span className="italic font-mono">applied</span>.<br />
+            <span className="text-black/70 font-mono">Fragrance amplified.</span>
           </h2>
         </motion.div>
 
@@ -743,6 +770,7 @@ function GetInTouch() {
             </label>
             <input
               type="email"
+              placeholder=" “ “"
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
@@ -756,6 +784,7 @@ function GetInTouch() {
               </label>
               <input
                 type="text"
+                placeholder=" “ “"
                 required
                 className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
               />
@@ -766,6 +795,7 @@ function GetInTouch() {
               </label>
               <input
                 type="text"
+                placeholder=" “ “"
                 required
                 className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
               />
@@ -779,6 +809,7 @@ function GetInTouch() {
             </label>
             <input
               type="text"
+              placeholder=" “ “"
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
@@ -790,6 +821,7 @@ function GetInTouch() {
             </label>
             <textarea
               rows="5"
+              placeholder=" “ “"
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             ></textarea>
@@ -824,24 +856,9 @@ function GetInTouch() {
     </section>
   );
 }
+
 function Footer() {
   const [open, setOpen] = useState(false);
-  const hasShown = useRef(false); // untuk mencegah muncul berulang
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY;
-      const bottom = document.body.offsetHeight - 10;
-
-      if (scrollPosition >= bottom && !hasShown.current) {
-        setOpen(true);
-        hasShown.current = true; // tandai sudah tampil
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <footer className="relative border-t border-black/10 bg-white py-10 text-center text-sm text-black/60">
@@ -856,7 +873,7 @@ function Footer() {
           <Instagram className="h-5 w-5 text-black hover:text-black/80" />
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/company/vendii-ltd/"
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 border border-black/10 rounded-full hover:border-black transition-all hover:scale-105"
