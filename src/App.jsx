@@ -54,11 +54,11 @@ function Nav() {
           <a href="#why-vendii" className="text-sm uppercase tracking-widest hover:opacity-70">
             WHY VENDII
           </a>
-          {/* <a href="#contact">
+          <a href="#contact">
             <button className="rounded-2xl border border-black bg-black px-5 py-2 text-white hover:bg-white hover:text-black">
               GET IN TOUCH
             </button>
-          </a> */}
+          </a>
         </div>
 
         {/* Menu mobile toggle */}
@@ -145,24 +145,7 @@ function Hero() {
             Uncover tomorrow's winning fragrances, today
           </p>
 
-          <h1 className="font-mono text-5xl leading-[1.1] md:text-6xl text-black">
-            Data & AI-driven fragrance evaluation for modern{" "}
-            <span className="relative inline-block text-white font-semibold">
-              {/* Brush background */}
-              <span
-                className="absolute inset-0 bg-no-repeat bg-center opacity-95"
-                style={{
-                  backgroundImage: `url(${bgBrush})`,
-                  backgroundSize: "cover",
-                  transform: "translateY(10%) rotate(-1.5deg)", // geser sedikit ke bawah
-                  filter: "drop-shadow(0 4px 4px rgba(0,0,0,0.3))",
-                  zIndex: 0,
-                  scale: 1.1,
-                }}
-              ></span>
-              <span className="relative z-10 px-6 py-2">Perfumery</span>
-            </span>
-          </h1>
+          <h1 className="font-mono text-5xl leading-[1.1] md:text-6xl"> Data & AI-driven fragrance evaluation for modern{" "} <span className="inline-block rounded-xl bg-black px-3 py-1 text-white"> Perfumery </span> </h1>
 
           <p className="mt-6 max-w-xl text-black/70">
             Test unreleased scents with real consumers. Get unbiased, AI-powered insights to guide development and launches.
@@ -783,7 +766,7 @@ function GetInTouch() {
             </label>
             <input
               type="email"
-              placeholder=" “"
+              placeholder=""
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
