@@ -677,7 +677,7 @@ function WhyChooseVendii() {
           transition={{ duration: 0.8 }}
           className="font-mono text-4xl md:text-5xl mb-4"
         >
-          Why Vendii
+          WHY VENDII
         </motion.h2>
 
         <motion.p
