@@ -15,6 +15,7 @@ import logo from "./assets/vendii-logo.avif";
 import challengeIcon from "./assets/the-challange.svg";
 import answerIcon from "./assets/our-answer.svg";
 import joKajal from "./assets/jo-kajal.avif"
+import bgBrush from "./assets/bg-brush.svg";
 
 
 // Monochrome Perfume Landing Page (Black & White Theme)
@@ -144,10 +145,22 @@ function Hero() {
             Uncover tomorrow's winning fragrances, today
           </p>
 
-          <h1 className="font-mono text-5xl leading-[1.1] md:text-6xl">
+          <h1 className="font-mono text-5xl leading-[1.1] md:text-6xl text-black">
             Data & AI-driven fragrance evaluation for modern{" "}
-            <span className="inline-block rounded-xl bg-black px-3 py-1 text-white">
-              Perfumery
+            <span className="relative inline-block text-white font-semibold">
+              {/* Brush background */}
+              <span
+                className="absolute inset-0 bg-no-repeat bg-center opacity-95"
+                style={{
+                  backgroundImage: `url(${bgBrush})`,
+                  backgroundSize: "cover",
+                  transform: "translateY(10%) rotate(-1.5deg)", // geser sedikit ke bawah
+                  filter: "drop-shadow(0 4px 4px rgba(0,0,0,0.3))",
+                  zIndex: 0,
+                  scale: 1.1,
+                }}
+              ></span>
+              <span className="relative z-10 px-6 py-2">Perfumery</span>
             </span>
           </h1>
 
@@ -507,7 +520,7 @@ function HowItWorks() {
         transition={{ duration: 0.8 }}
         className="text-center mb-12 px-4"
       >
-        <h2 className="font-mono text-2xl md:text-2xl lg:text-4xl mb-4 tracking-wide uppercase">
+        <h2 className="font-mono text-4xl md:text-5xl mb-4 tracking-wide uppercase">
           HOW IT WORKS
         </h2>
 
@@ -770,7 +783,7 @@ function GetInTouch() {
             </label>
             <input
               type="email"
-              placeholder=" “ “"
+              placeholder=" “"
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
@@ -784,7 +797,7 @@ function GetInTouch() {
               </label>
               <input
                 type="text"
-                placeholder=" “ “"
+                placeholder=""
                 required
                 className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
               />
@@ -795,7 +808,7 @@ function GetInTouch() {
               </label>
               <input
                 type="text"
-                placeholder=" “ “"
+                placeholder=""
                 required
                 className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
               />
@@ -809,7 +822,7 @@ function GetInTouch() {
             </label>
             <input
               type="text"
-              placeholder=" “ “"
+              placeholder=""
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
@@ -821,7 +834,7 @@ function GetInTouch() {
             </label>
             <textarea
               rows="5"
-              placeholder=" “ “"
+              placeholder=""
               required
               className="w-full rounded-2xl border border-black/20 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             ></textarea>
